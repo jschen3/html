@@ -1,3 +1,4 @@
 angular.module('Constants',[])
-	.constant('SLIDE_URL', 'http://52.26.239.196:8080/Website/slides')
-	.constant('ARTICLE_URL', 'http://52.26.239.196:8080/Website/articles');
+	.constant('SLIDE_URL', 'http://localhost:8080/Website/slides')
+	.constant('ARTICLE_URL', 'http://localhost:8080/Website/articles')
+	.constant('IMAGE_URL', 'http://localhost:8080/Website/images');

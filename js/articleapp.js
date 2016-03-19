@@ -14,12 +14,19 @@
 });
 */
 var app = angular.module('articleapp', ['Constants']);
-app.controller("ArticleCtrl", ['$scope', '$http', '$location', 'ARTICLE_URL', function ($scope, $http, $location, articleUrl) {
+app.controller("ArticleCtrl", ['$scope', '$http', '$location', 'ARTICLE_URL', 'IMAGE_URL', function ($scope, $http, $location, articleUrl, imageUrl) {
       // do stuff with $routeParams
     $scope.id=$location.search().id;
     console.log($location.search().id);
+
     $http.get(articleUrl+"/"+$scope.id).then(function(response){
       	$scope.article = response.data;
-		console.log($scope.article);
+        if ($scope.title!=undefined)
+            $scope.imageAppend=imageUrl+"/"$scope.article.locator+"/";
+        else {
+            $scope.imageAppend="";
+        }
+        console.log($scope.article);
+        console.log($scope.imageAppend);
 	});
 }]);

@@ -1,19 +1,14 @@
 angular.module('app',['ngAnimate','ui.bootstrap', 'Constants']);
 angular.module('app').controller('CarouselCtrl', ['$scope', '$http', 'SLIDE_URL', function($scope, $http, slideUrl){
-
     $http.get(slideUrl).then(function(response){
         $scope.slides = response.data;
         var m = $scope.slides.length, t, i;
         while (m) {
-            // Pick a remaining element…
             i = Math.floor(Math.random() * m--);
-
-            // And swap it with the current element.
             t = $scope.slides[m];
             $scope.slides[m] = $scope.slides[i];
             $scope.slides[i] = t;
         }
-
         console.log($scope.slides);
     });
 
