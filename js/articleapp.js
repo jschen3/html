@@ -21,10 +21,10 @@ app.controller("ArticleCtrl", ['$scope', '$http', '$location', 'ARTICLE_URL', 'I
 
     $http.get(articleUrl+"/"+$scope.id).then(function(response){
       	$scope.article = response.data;
-        if ($scope.title!=undefined)
-            $scope.imageAppend=imageUrl+"/"$scope.article.locator+"/";
-        else {
+        if ($scope.article.title===undefined)
             $scope.imageAppend="";
+        else {
+			$scope.imageAppend=imageUrl+"/"+$scope.article.locator+"/";
         }
         console.log($scope.article);
         console.log($scope.imageAppend);
