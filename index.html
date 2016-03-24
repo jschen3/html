@@ -65,19 +65,23 @@
     </div>
     <div ng-controller="articleCtrl" id="body" class="width">
 		<section id="content" class="two-column with-right-sidebar">
-        <article ng-repeat="article in articles">
-            <h2>{{article.title}}</h2>
-            <div class="article-time">Posted on
-                <time datetime="{{article.dateNumbers}}">
-                    {{article.dateText}}
-                </time>
-                <p>{{article.blurbText}}</p>
-                <p>
-                    <a href="{{article.url}}" class="button">Read More</a>
-                </p>
-            </div>
-        </article>
-        <div class="pagination" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
+            <article ng-repeat="article in articles.slice(((currentPage-1)*4), ((currentPage)*4))">
+                <h2>{{article.title}}</h2>
+                <div class="article-time">Posted on
+                    <time datetime="{{article.dateNumbers}}">
+                        {{article.dateText}}
+                    </time>
+                    <p>{{article.blurbText}}</p>
+                    <p>
+                        <a href="{{article.url}}" class="button">Read More</a>
+                    </p>
+                </div>
+            </article>
+            <ul class="pagination">
+                <li><a href="#" ng-click="paginationSelected(-2)">Previous</a></li>
+                <li ng-repeat="i in getNumber(paginationNumber) track by $index" ng-click="paginationSelected(i+1)"><a href="#">{{$index+1}}</a></li>
+                <li><a href="#" ng-click="paginationSelected(-1)">Next</a></li>
+            </ul>
         </section>
         <aside class="sidebar big-sidebar right-sidebar">
             <ul>

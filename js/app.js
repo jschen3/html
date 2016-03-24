@@ -30,17 +30,32 @@ angular.module('app').controller('articleCtrl', ['$scope', '$http', 'ARTICLE_URL
         linkUrl: ""
     }];
     */
-    $scope.currentPage = 1;
-    $scope.itemsPerPage = $scope.viewby;
+    $scope.currentPage=1;
+    var pages;
+    $scope.paginationNumber;
     $http.get(articleUrl).then(function(response){
         $scope.articles = response.data;
-        $scope.totalItems = $scope.articles.length;
-        console.log($scope.articles);
+        $scope.paginationNumber = Math.ceil($scope.articles.length/4);
     });
-    $scope.viewby = 5;
-    $scope.setPage = function (pageNo) {
-        $scope.currentPage = pageNo;
-    };
+    console.log($scope.paginationNumber);
+    $scope.paginationSelected = function(num){
+        if (num===-2){
+            if ($scope.currentPage-1 <1 )
+                $scope.currentPage=1;
+            else
+                $scope.currentPage=$scope.currentPage-1;
+        }
+        else if (num===-1){
+                if ($scope.currentPage+1>pages)
+                    $scope.currentPage=pages;
+                else
+                    $scope.currentPage=$scope.currentPage+1;
+        }
+        else{
+            $scope.currentPage=num;
+        }
+        console.log($scope.currentPage);
+    }
     $scope.months=[{
         url: "",
         month:"January Articles"
