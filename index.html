@@ -79,7 +79,7 @@
             </article>
             <ul class="pagination">
                 <li><a href="#" ng-click="paginationSelected(-2)">Previous</a></li>
-                <li ng-repeat="i in getNumber(paginationNumber) track by $index" ng-click="paginationSelected(i+1)"><a href="#">{{$index+1}}</a></li>
+                <li ng-repeat="i in styleArray track by $index" ng-click="paginationSelected($index+1)" ng-class="styleArray[$index]"><a href="#">{{$index+1}}</a></li>
                 <li><a href="#" ng-click="paginationSelected(-1)">Next</a></li>
             </ul>
         </section>

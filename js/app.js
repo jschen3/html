@@ -32,12 +32,18 @@ angular.module('app').controller('articleCtrl', ['$scope', '$http', 'ARTICLE_URL
     */
     $scope.currentPage=1;
     var pages;
-    $scope.paginationNumber;
+    $scope.paginationNumber=2
     $http.get(articleUrl).then(function(response){
-        $scope.articles = response.data;
-        $scope.paginationNumber = Math.ceil($scope.articles.length/4);
+        $scope.articles=response.data;
+        $scope.paginationNumber=Math.ceil($scope.articles.length/4);  
     });
+   
     console.log($scope.paginationNumber);
+    $scope.styleArray=new Array($scope.paginationNumber);
+    for (i=0; i<$scope.styleArray.length;i++){
+        $scope.styleArray[i]="";
+    }
+    $scope.styleArray[$scope.currentPage-1]="active";
     $scope.paginationSelected = function(num){
         if (num===-2){
             if ($scope.currentPage-1 <1 )
@@ -54,6 +60,10 @@ angular.module('app').controller('articleCtrl', ['$scope', '$http', 'ARTICLE_URL
         else{
             $scope.currentPage=num;
         }
+        for (i=0; i<$scope.styleArray.length;i++){
+            $scope.styleArray[i]="";
+        }
+        $scope.styleArray[$scope.currentPage-1]="active";
         console.log($scope.currentPage);
     }
     $scope.months=[{
