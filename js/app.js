@@ -30,10 +30,17 @@ angular.module('app').controller('articleCtrl', ['$scope', '$http', 'ARTICLE_URL
         linkUrl: ""
     }];
     */
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = $scope.viewby;
     $http.get(articleUrl).then(function(response){
         $scope.articles = response.data;
+        $scope.totalItems = $scope.articles.length;
         console.log($scope.articles);
     });
+    $scope.viewby = 5;
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
     $scope.months=[{
         url: "",
         month:"January Articles"
