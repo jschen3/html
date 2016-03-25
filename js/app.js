@@ -32,10 +32,10 @@ angular.module('app').controller('articleCtrl', ['$scope', '$http', 'ARTICLE_URL
     */
     $scope.currentPage=1;
     var pages;
-    $scope.paginationNumber=2
+    $scope.paginationNumber=3;
     $http.get(articleUrl).then(function(response){
         $scope.articles=response.data;
-        $scope.paginationNumber=Math.ceil($scope.articles.length/4);  
+        $scope.paginationNumber=Math.ceil($scope.articles.length/3);  
     });
    
     console.log($scope.paginationNumber);

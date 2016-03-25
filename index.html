@@ -65,7 +65,7 @@
     </div>
     <div ng-controller="articleCtrl" id="body" class="width">
 		<section id="content" class="two-column with-right-sidebar">
-            <article ng-repeat="article in articles.slice(((currentPage-1)*4), ((currentPage)*4))">
+            <article ng-repeat="article in articles.slice(((currentPage-1)*3), ((currentPage)*3))">
                 <h2>{{article.title}}</h2>
                 <div class="article-time">Posted on
                     <time datetime="{{article.dateNumbers}}">
