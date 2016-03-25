@@ -52,8 +52,8 @@ angular.module('app').controller('articleCtrl', ['$scope', '$http', 'ARTICLE_URL
                 $scope.currentPage=$scope.currentPage-1;
         }
         else if (num===-1){
-                if ($scope.currentPage+1>pages)
-                    $scope.currentPage=pages;
+                if ($scope.currentPage+1>$scope.paginationNumber)
+                    $scope.currentPage=$scope.paginationNumber;
                 else
                     $scope.currentPage=$scope.currentPage+1;
         }
