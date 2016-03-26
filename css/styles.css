@@ -490,7 +490,7 @@ article .article-time {
     color: #000000;
     font-size: 0.9em;
     letter-spacing: -0.5px;
-    padding: 0 0 10px 0;
+    padding: 0 0 0px 0;
 }
 
 article .article-info a { 
@@ -840,4 +840,16 @@ article .article-info a{
 article{
 	padding-top:5px;
 	padding-bottom:5px;
+}
+.article-button{
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.article-button-p{
+	padding-bottom: 5px;
+	margin-bottom: 0px;
+}
+.article-p{
+	padding-bottom: 5px;
+	margin-bottom: 0px;
 }
