@@ -837,19 +837,19 @@ article .article-info a{
    	border-bottom: 2px solid black;
    	clear: both;
 }
-article{
-	padding-top:0px;
-	padding-bottom:0px;
-}
 .article-button{
 	padding-top: 3px;
 	padding-bottom: 3px;
+}
+.article-p{
+	margin-bottom: 0px;
 }
 .article-button-p{
 	padding-bottom: 5px;
 	margin-bottom: 0px;
 }
-.article-p{
+article{
+	padding-top: 5px;
 	padding-bottom: 5px;
 	margin-bottom: 0px;
 }
