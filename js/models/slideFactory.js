@@ -1,7 +1,13 @@
+/*
+ * Factory to obtain slides
+ */
 angular.module('app').factory('slideFactory', ['$q', '$http', 'SLIDE_URL',
 	function($q, $http, slideUrl){
 		var _slides;
 		var slideFactory={};
+	/*
+	 * Retrieves the slide list from http request
+	 */
 	slideFactory.getSlides = function(){
 		var defer=$q.defer();
 		$http.get(slideUrl).then(function(response){
