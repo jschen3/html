@@ -56,7 +56,7 @@ angular.module('app').factory('articleListFactory', ['$q', '$http', 'ARTICLE_URL
 				_currentPage=1;
 			else
 				_currentPage=_currentPage-1;
-		=}
+		}
 		else if (num===-1){
 			if ((_currentPage+1)>_paginationNumber)
 				_currentPage=_paginationNumber;

@@ -46,11 +46,11 @@
     </header>
     <div ng-controller="CarouselCtrl" class="width carousel center">
         <div>
-            <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+            <uib-carousel>
                 <uib-slide ng-repeat="slide in slides" ng-model="slide">
                     <div>
                         <div class="carousel-left">
-                            <img ng-src="{{slide.imagePath}}"/>
+                            <img class="slide-image" ng-src="{{slide.imagePath}}"/>
                         </div>
                         <div class="carousel-right">
                             <h2>{{slide.title}}</h2>
