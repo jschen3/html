@@ -423,6 +423,13 @@ article .article-info a{
    	border-bottom: 2px solid black;
    	clear: both;
 }
+.project-text{
+	width: 60%;
+	float: left;
+}
+.project-image{
+	float:right;
+}
 .article-button{
 	padding-top: 3px;
 	padding-bottom: 3px;

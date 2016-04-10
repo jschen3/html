@@ -29,17 +29,24 @@
     </header>
     <div ng-controller="ProjectCtrl" class="width project-body">
     	<article ng-repeat="project in projects">	
-    		<div class="project-div">
-    			<h2 style="width: 65%; float: left" ng-bind="project.title"></h2>
-    			<p class="project-description" style="width: 60%; float: left">
+    		<div class="project-text">
+    			<h2 ng-bind="project.title"></h2>
+    			<p class="project-description">
                     {{project.summary}}
                 </p>
-                <img class="project-image" style="float:right" ng-src="{{imageUrl}}/{{project.locator}}/{{project.image}}" />
+                <p class="project-description">
+                    Technologies: {{project.technologies}}
+                </p>
                 <div style="float: left">
                     Demo Link:<a ng-if="project.hasDemoLink" class="link" href="{{project.demoLink}}"> {{project.demoLink}}</a>
                     <br>
                     <a class="project-button" href="{{project.github}}">github</a>          
-    		    </div>
+                </div>
             </div>
+            <div class="project-image">
+                <img style="float:right" ng-src="{{imageUrl}}/{{project.locator}}/{{project.image}}" />
+            </div>
+                
+        
     	</article>
     </div>
