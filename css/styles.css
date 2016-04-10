@@ -12,24 +12,19 @@ td {
 	border-bottom: 1px solid #539765;
 }
 
-a {
-	color: #fff;
-	border-bottom: 1px solid #fff;
+.sidebar-link {
+	color: #FFFFFF;
+}
+
+.sidebar-link:hover {
+	background-color: #111111;
+	color: #FFFFFF;
 	text-decoration: none;
 }
 
-a:hover {
-/*	border-bottom-color: #F0E184;
-	color: #F0E184;*/
-}
-
-a:focus {
-	outline: none;
-}
 
 
 a.button { 
-  
     background: #337ab7;
     color: #FFFFFF;
     display: inline-block;
@@ -161,15 +156,6 @@ nav ul li a:hover, nav ul li.sfHover a {
 	background: #111111;
 	color: #fff;
 }
-
- nav ul li.sfHover ul a, nav ul ul {
-	background: #539765;
-	color: #fff;
-}
-
-nav ul li li a:hover, nav ul li.sfHover li a:hover {
-	background: #6EAF80;
-}
 #body {
 	background: #777777;
 	margin: 20px auto 0;
@@ -178,7 +164,6 @@ nav ul li li a:hover, nav ul li.sfHover li a:hover {
 	border-radius: 15px;
 	
 }
-
 #content {
     float: left;
 }
@@ -273,7 +258,7 @@ article .article-info a {
 .sidebar ul.blocklist li a:hover {
 	border-bottom: 0;
 	display: block;
-	border-bottom: 1px solid #1B2C20;
+	border-bottom: 1px solid #111111;
 	padding: 12px 10px;
 }
 
