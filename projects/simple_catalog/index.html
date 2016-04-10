@@ -1,0 +1,153 @@
+<html ng-app="invoiceApp">
+<head>
+    <title>Steel Brick Coding Challenge Invoices</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" type="text/css"/>
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular.js"></script>
+    <script type="text/javascript" src="js/lib/angular-animate.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/controllers/invoice-app.js"></script>
+    <script type="text/javascript" src="js/models/invoice.js"></script>
+    <script type="text/javascript" src="js/models/catalog.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datepicker').datepicker({
+                format: "mm/dd/yyyy"
+            });
+        });
+    </script>
+</head>
+<!-- The body of the invoice app. The main table, title, logo image, etc.   -->
+<body ng-controller="InvoiceCtrl">
+    <div class="container" width="800px" id="container">
+        <div class="title-section" style="text-align: center">
+            <h1>Steel Brick Invoices</h1>
+        </div>
+        <div class="login-section" style="float:left">
+            Name: <input class="text-input input1" field="text" ng-model="info.name"/><br>
+            Date: <input class="text-input input4" type="text" placeholder="mm/dd/yyyy" id="datepicker" ng-model="info.date"/><br>
+            Invoice Id: <input class="text-input input5" field="text" ng-model="info.id"/>
+        </div>
+        <div class="company-section" style="float:right">
+            <img src="images/steelbrick.png"/>
+        </div>
+        <div class="table-div" id="table-div">
+            <a data-toggle="modal" href="#catalogModal" class="btn btn-primary">Add Item</a>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Delete?</th>
+            </tr>
+            <tr ng-repeat="item in invoice">
+                <td>{{item.id}}</td>
+                <td><img ng-src="{{item.image}}"/>
+                <td>{{item.name}}</td>
+                <td><input type="text" class="input-quantity" ng-model="item.price" ng-change="updateRow(item.id, item.price, item.quantity)"/></td>
+                <td><input type="text" class="input-quantity" ng-model="item.quantity" ng-change="updateRow(item.id, item.price, item.quantity)"/></td>
+                <td>{{item.total}}</td>
+                <td><input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(item.id)"/></td>
+            </tr>
+        </table>
+        <div class="total">
+            <h2>Total:{{total}}</h2>
+        </div>
+        <div class="create-invoice">
+            <a data-toggle="modal" href="#invoiceFinalModal" class="btn btn-primary">View Invoice</a>
+        </div>
+        <div class="footer">
+        </div>
+<!-- The add item / catalog modal -->
+    <div class="modal fade" id="catalogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title">Catalog</h4>
+               </div>
+               <div class="modal-body">
+                   <div>
+                       <i class="fa fa-search"></i><input type="text" placeholder="filter" ng-model="searchQuery"/>
+                   </div>
+               <div class="scrollable">
+                    <table class="table">
+                        <tr>
+                             <th>Item Name</th>
+                             <th>Image</th>
+                             <th>Price</th>
+                             <th>Add?</th>
+                        </tr>
+                        <tr ng-repeat="item in catalog | filter:searchQuery">
+                            <td>{{item.name}}</td>
+                            <td><img ng-src="{{item.image}}"/></td>
+                            <td><input type="text" class="input-quantity" ng-model="item.price"/></td>
+                            <td><input type="button" value="Add" class="btn btn-primary" ng-click="addItem(item.id)"/></td>
+                        </tr>
+                    </table>
+              </div>
+        </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <div class="modal fade" id="invoiceFinalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+           <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h3 class="modal-title">Invoice</h3>
+               </div>
+           <div class="modal-body">
+               <div style="float:right; clear:both"><a class="btn btn-primary print-text" ng-click="print()"><i class="fa fa-print"></i> Print</a></div>
+                    <div class="invoice-main" id="invoice-main">
+                       <div class="invoice-info">
+                          <div class="invoice-company-name">SteelBrick<br></div>
+                          <div class="invoice-final-info">
+                              Name: {{info.name}}<br>
+                              Invoice Id: {{info.id}}<br>
+                              Invoice Date: {{info.date}}<br>
+                          </div>
+                       </div>
+                           <div class="invoice-image">
+                               <img src="images/steelbrick-invoice.png"/>
+                           </div>
+                           <table class="invoice-final table">
+                              <tr>
+                                  <th>Item Id</th>
+                                  <th>Item Name</th>
+                                  <th>Item Price</th>
+                                  <th>Quantity</th>
+                                  <th>Item Total</t>
+                              </tr>
+                              <tr ng-repeat="item in invoice">
+                                  <td>{{item.id}}</td>
+                                  <td>{{item.name}}</td>
+                                  <td>{{item.price}}</td>
+                                  <td>{{item.quantity}}</td>
+                                  <td>{{item.total}}</td>
+                              </tr>
+                           </table>
+                           <div class="total-final">
+                               Total:{{total}}
+                           </div>
+                       </div>
+                   </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+               </div>
+           </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>
