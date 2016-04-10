@@ -5,11 +5,12 @@
 <title>Jimmy Chen Enterprising Programmer</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/styles.css" type="text/css" />
-<script type="text/javascript" src="js/angular.js"></script>
-<script type="text/javascript" src="js/angular-animate.js"></script>
-<script type="text/javascript" src="js/projectapp.js"></script> 
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/constants.js"></script>
+<script type="text/javascript" src="js/lib/angular.js"></script>
+<script type="text/javascript" src="js/lib/angular-animate.js"></script>
+<script type="text/javascript" src="js/controllers/projectapp.js"></script> 
+<script type="text/javascript" src='js/models/projectFactory.js'></script>
+<script type="text/javascript" src="js/lib/bootstrap.js"></script>
+<script type="text/javascript" src="js/constants/constants.js"></script>
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 </head>
 <div id="container">
@@ -26,18 +27,25 @@
     		<div class="clear"></div>
     	</nav>
     </header>
-    <!--
-    <div ng-controller="ProjectCtrl"  id="body" class="width">
-    	<article>	
-    		<div>
-    			<h2 style="width: 65%; float: left">Predicting the primaries</h2>
-    			<p class="project-description" style="width: 65%; float: left">Here is an example project description. I am puting a bunch of random text in it to see if it works and what it looks like. Bla bla bla. Here is an example project description. I am puting a bunch of random text in it to see if it works and what it looks like. Bla bla bla. Here is an example project description. I am puting a bunch of random text in it to see if it works and what it looks like. Bla bla bla</p>
-    			<a class="project-link">Read more</a>
-    			<p class="project-link">Github: <a>www.github.com</a></p>
-    			<img class="project-image" src="seal.png" />
-
-    		</div>
+    <div ng-controller="ProjectCtrl" class="width project-body">
+    	<article ng-repeat="project in projects">	
+    		<div class="project-text">
+    			<h2 ng-bind="project.title"></h2>
+    			<p class="project-description">
+                    {{project.summary}}
+                </p>
+                <p class="project-description">
+                    Technologies: {{project.technologies}}
+                </p>
+                <div style="float: left">
+                    <p ng-if="project.hasDemoLink">Demo Link:<a ng-if="project.hasDemoLink" class="link" href="{{project.demoLink}}"> {{project.demoLink}}</a></p>
+                    <a class="project-button" href="{{project.github}}">github</a>          
+                </div>
+            </div>
+            <div class="project-image">
+                <img style="float:right" ng-src="{{imageUrl}}/{{project.locator}}/{{project.image}}" />
+            </div>
+                
+        
     	</article>
-    -->
-   <h1>Coming soon. Under construction</h1>
-</div>
+    </div>
