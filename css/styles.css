@@ -415,6 +415,9 @@ article .article-info a{
 	background-color:#135a97;
 	text-decoration: none;
 }
+.project-description{
+	padding-top: 10px;
+}
 .project-div{
    	border-bottom: 2px solid black;
    	clear: both;
@@ -447,4 +450,23 @@ article{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	margin-bottom: 0px;
+}
+.project-div{
+	padding-top: 10px;
+   	border-bottom: 2px solid black;
+   	clear: both;
+}
+.teaser-body{
+	border-top: 2px solid black;
+	padding-top: 10px;
+}
+.teaser-text{
+	padding-bottom: 10px;
+}
+.teaser-p{
+	padding-top: 10px; 
+}
+.teaser-time{
+	font-size: 1.0em;
+	padding-top: 10px;
 }
