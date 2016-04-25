@@ -1,13 +1,14 @@
-angular.module('teaserListApp').factory('teaserFactory',['$q','$http','TEASER_URL', function($q, $http, teaserUrl){
-	var _teasers;
-	var teaserFactory={};
-	teaserFactory.getTeasers = function(){
-		var defer=$q.defer();
-		$http.get(teaserUrl).then(function(response){
-			_teasers=response.data;
-			defer.resolve(_teasers);
-		});
-		return defer.promise;
-	}
-	return teaserFactory;
-}]);
+angular.module('teaserApp').factory('teaserFactory',['$q','$http','TEASER_URL',
+ 	function($q,$http,teaserUrl){
+ 		var _teaser;
+ 		var teaserFactory ={};
+ 		teaserFactory.getTeaser = function(id){
+ 			var defer=$q.defer();
+ 			$http.get(teaserUrl+'/'+id).then(function(response){
+ 				_teaser=response.data;
+ 				defer.resolve(_teaser);
+ 			});
+ 			return defer.promise;
+ 		}
+ 		return teaserFactory;
+	}]);

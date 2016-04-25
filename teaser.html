@@ -9,8 +9,8 @@
 <script type="text/javascript" src="js/lib/bootstrap.js"></script>
 <script type="text/javascript" src="js/lib/angular-route.js"></script>
 <script type="text/javascript" src="js/constants/constants.js"></script>
-<script type="text/javascript" src="js/controllers/teaserapp.js"></script>
-<script type="text/javascript" src="js/controllers/teaserFactory.js"></script>
+<script type="text/javascript" src="js/controllers/teaserApp.js"></script>
+<script type="text/javascript" src="js/models/teaserFactory.js"></script>
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -43,26 +43,29 @@
     </div>
         <div id="body" class="width">
             <h2>{{teaser.title}}</h2>
-            <div class="article-time">Posted on <time>{{teaser.date}}</time></div>
+            <div class="article-time">Posted on <time>{{teaser.dateText}}</time></div>
             <div class="teaser-problem">
                 <p class="teaser-p"><b>Problem Statement:</b></p>
-                <div ng-repeat="articleComponent in teaser.articleComponents">
+                
+                <div ng-repeat="articleComponent in teaser.problem">
                     <p class="teaser-p" ng-repeat="text in articleComponent.texts">{{text}}</p>
                     <img ng-repeat="image in articleComponent.images"/>
                 </div>
+                
             </div>
             <div class="solution-button">
                 <a class="button" ng-bind="buttonText" ng-click="toggleSolution()"></a>
             </div>
             <div class="teaser-solution" ng-show="showSolution">
-                <div ng-repeat="solutionComponent in teaser.solutionComponents">
-                    <p class="teaser-p" ng-repeat="text in solutionComponent.texts">{{text}}</p>
-                    <div class="teaser-solution-code" ng-repeat="code in solutionComponent.codes">
-                        <pre class="prettyprint">
-{{code}}
+               <div ng-repeat="component in teaser.solution">
+                    <p ng-if="checkType(component.type,0)" class="teaser-p">{{component.content}}</p>
+                    <div ng-if="checkType(component.type,2)" class="teaser-solution-code">
+                        <pre onload="prettyPrint()" class="prettyprint">
+{{component.content}}
                         </pre>
                     </div>
-                    <img ng-repeat="image in solutionComponent.images"/>
+                    <img ng-if="checkType(component.type,3)" ng-src="{{component.content}}"/>
+                   
                 </div>
                 
             </div>

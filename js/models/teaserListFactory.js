@@ -1,11 +1,12 @@
 angular.module('teaserListApp').factory('teaserListFactory',['$q','$http','TEASER_URL', function($q, $http, teaserUrl){
-	var _teasers;
+	var _teaserList;
+	var _teaser;
 	var teaserListFactory={};
 	teaserListFactory.getTeasers = function(){
 		var defer=$q.defer();
 		$http.get(teaserUrl).then(function(response){
-			_teasers=response.data;
-			defer.resolve(_teasers);
+			_teaserList=response.data;
+			defer.resolve(_teaserList);
 		});
 		return defer.promise;
 	}
