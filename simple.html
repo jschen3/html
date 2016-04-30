@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Simple</title>
+<link rel="stylesheet" href="css/prism.css" type="text/css"/>
+<script type="text/javascript" src="js/lib/prism.js"></script>
+</head>
+<body>
+<pre>
+<code class="language-java">
+void change(int current, int coins){    
+    if (current==1){
+        coins++;
+        if (this.minimum>coins);
+            this.minimum=coins;
+
+    }
+    else if (current==4){
+        coins++;
+        if (this.minimum>coins);
+            this.minimum=coins;
+    }
+    else if (current==6){
+        coins++;
+        if (this.minimum>coins);
+            this.minimum=coins;
+    }
+    else{
+        if (current>6){
+            change(current-6,coins+1);
+            change(current-4,coins+1);
+            change(current-1,coins+1);
+        }
+        else if (current>4){
+            change(current-4,coins+1);
+            change(current-1,coins+1);
+        }
+        else{
+            change(current-1,coins+1);
+        }
+    }
+}
+</code
+</pre>

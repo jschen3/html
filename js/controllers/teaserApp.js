@@ -6,6 +6,7 @@ app.controller("TeaserCtrl",['$scope','$http','$location','teaserFactory',
 		$scope.showSolution=false;
 		$scope.buttonText="Show Solution"
 		$scope.toggleSolution=function(){
+			Prism.highlightAll();
 			if ($scope.showSolution===false){
 				$scope.buttonText="Hide Solution"
 				$scope.showSolution=true;
@@ -18,7 +19,9 @@ app.controller("TeaserCtrl",['$scope','$http','$location','teaserFactory',
 		teaserFactory.getTeaser($scope.id).then(function(response){
 			$scope.teaser=response;
 			console.log($scope.teaser);
+			Prism.highlightAll();
 		});
+		
 		$scope.checkType = function(type, templateType){
 			if (type===templateType)
 				return true;
@@ -27,3 +30,4 @@ app.controller("TeaserCtrl",['$scope','$http','$location','teaserFactory',
 			}
 		}
 }]);
+
