@@ -38,13 +38,11 @@
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      document.getElementById('status').innerHTML = '';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      document.getElementById('status').innerHTML = '';
     }
   }
 
@@ -99,7 +97,7 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Welcome, ' + response.name + '.';
     });
   }
 </script>
@@ -116,9 +114,14 @@
 	    <li><a href="projects.html">Projects</a></li>
         <li><a href="codingteasers.html">Coding Teasers</a></li>
         <li><a href="aboutme.html">About Me</a></li>
+        <li><div id="status">
+
+            </div>
+            <fb:login-button auto-logout-link="true" data-size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+        </li>
         </ul>
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
+
     </div>
     <div class="clear"></div>
     </nav>
