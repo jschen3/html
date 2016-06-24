@@ -3,7 +3,7 @@ body {
 	margin:0;
 	padding:0;
 	font-family: 'PT Sans', 'sans-serif';
-	font-size: 14px; 
+	font-size: 14px;
 	color: #000000;
 	font-weight: 200;
 }
@@ -23,7 +23,7 @@ td {
 
 
 
-a.button { 
+a.button {
     background: #337ab7;
     color: #FFFFFF;
     display: inline-block;
@@ -124,14 +124,26 @@ nav div ul li a {
 	padding: 13px 20px 10px;
     color: #eee;
     font-family: 'PT Sans', 'sans-serif';
-    font-size:12px; 
+    font-size:12px;
     border-bottom: none;
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 0.5px;
 	text-decoration: none;
 }
-
+nav div ul li div{
+	display: block;
+	float: left;
+	padding: 13px 20px 10px;
+    color: #000;
+    font-family: 'PT Sans', 'sans-serif';
+    font-size:12px;
+    border-bottom: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	text-decoration: none;
+}
 nav div ul li li a {
 	float: none;
 }
@@ -157,7 +169,7 @@ nav div ul li a:hover, nav ul li.sfHover a {
  	padding: 5px 15px;
 	clear: both;
 	border-radius: 15px;
-	
+
 }
 #content {
     float: left;
@@ -181,7 +193,7 @@ article h2 {
     padding: 0 0 0px 0;
 }
 
-article .article-info a { 
+article .article-info a {
 	color: #FFFFFF;
 	font-size: 1.0em;
 	border-bottom-color: #c0c0c0;
@@ -191,7 +203,7 @@ article .article-info a {
 	margin-top: 10px;
 }
 
-.small-sidebar { 
+.small-sidebar {
    width: 25%;
 }
 
@@ -199,7 +211,7 @@ article .article-info a {
 	width: 30%;
 }
 
-.left-sidebar { 
+.left-sidebar {
 	float: left;
 }
 
@@ -241,7 +253,7 @@ article .article-info a {
 	font-size: 0.85em;
 }
 
-.sidebar li ul li.text { 
+.sidebar li ul li.text {
 	border-bottom: none;
 }
 
@@ -259,7 +271,7 @@ article .article-info a {
 
 .sidebar ul.blocklist li a.selected {
 	background:#111111;
-    color: #FFFFFF;	
+    color: #FFFFFF;
 	font-weight: bold;
 
 }
@@ -344,13 +356,13 @@ footer {
 	float: left;
 	margin-right: 40px;
 	width: 45%;
-}	
+}
 .carousel-right{
 	text-align: left;
 }
 .carousel-control.left, .carousel-control.right {
     background-image: none
-   	
+
 }
 .carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev{
 	left: -40px;
@@ -387,7 +399,7 @@ article .article-info a{
 	display: block;
 }
 .article-text{
-	
+
 	text-indent: 30px;
 	margin-top: 20px;
 }
@@ -398,7 +410,7 @@ article .article-info a{
 	border-radius: 15px;
 	height: auto;
 }
-.project-button { 
+.project-button {
     background: #337ab7;
     color: #FFFFFF;
     display: inline-block;
