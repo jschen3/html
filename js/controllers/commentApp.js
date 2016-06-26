@@ -1,7 +1,6 @@
 angular.module('commentCtrl',[]).controller('commentCtrl',['$scope', '$location', 'commentFactory',
- function($scope, $location, commentFactory){
+  function($scope, $location, commentFactory){
   	$scope.id=$location.search().id;
-    $scope.authenticated=false;
     console.log($scope.id);
   	commentFactory.initStylesArray($scope.id).then(function(response){
   		$scope.styleArray=response;
@@ -16,9 +15,6 @@ angular.module('commentCtrl',[]).controller('commentCtrl',['$scope', '$location'
   		$scope.currentPage=commentFactory.getCurrentPage();
   	}
   	$scope.currentPage=commentFactory.getCurrentPage();
-    $scope.post = function(){
-      var comment={};
-    }
     $scope.cancel = function(){
         this.text='';
         $scope.text='';

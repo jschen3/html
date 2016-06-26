@@ -2,8 +2,8 @@
  * All the methods to control the article page. 
  * Works for any article, the article displayed depends on the id.
  */
-var app = angular.module('articleapp', ['Constants', 'loginCtrl', 'commentCtrl']);
-app.controller("ArticleCtrl", ['$scope', '$http', '$location', 'articleFactory', function ($scope, $http, $location, articleFactory) {
+var app = angular.module('articleapp', ['Constants', 'commentCtrl']);
+app.controller("ArticleCtrl", ['$scope', '$http', '$location', 'articleFactory', function ($scope, $http, $location, articleFactory, loginFactory) {
     $scope.id=$location.search().id;
     console.log($location.search().id);
     /*
@@ -19,4 +19,10 @@ app.controller("ArticleCtrl", ['$scope', '$http', '$location', 'articleFactory',
     articleFactory.getImageAppend($scope.id).then(function(response){
     	$scope.imageAppend=response;
     });
+    $scope.login = function(){
+        loginFactory.login();
+    }
+    $scope.logout = function(){
+        loginFactory.logout();
+    }
 }]);

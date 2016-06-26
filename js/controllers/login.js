@@ -1,10 +1,11 @@
-angular.module('loginCtrl',['facebook']).config(
+angular.module('loginFactory',['facebook']).config(
     ['FacebookProvider', function(FacebookProvider){
         var myAppId='1746903815593556';
         FacebookProvider.init(myAppId);
 }])
-    .controller('loginCtrl',['$scope','$timeout','Facebook',
+    .factory('loginFactory', ['$scope','$timeout','Facebook',
      function($scope, $timeout, Facebook){
+        loginFactory= {};
         $scope.user = {};
         $scope.authenticated=false;
         $scope.statusMessage='';
@@ -17,7 +18,7 @@ angular.module('loginCtrl',['facebook']).config(
                     $scope.facebookReady=true;
             }
         );
-        $scope.login = function(){
+        loginFactory.login = function(){
             Facebook.login(function(response) {
                 if (response.status == 'connected') {
                     $scope.authenticated = true;
@@ -33,7 +34,7 @@ angular.module('loginCtrl',['facebook']).config(
         
             });
         };
-        $scope.logout = function() {
+        loginFactory.logout = function() {
             Facebook.logout(function() {
                 $scope.$apply(function() {
                     $scope.user   = {};
@@ -42,8 +43,11 @@ angular.module('loginCtrl',['facebook']).config(
                 });
             });
         };
-        $scope.getUserName = function(){
+        loginFactory.getUserName = function(){
             return $scope.user.name;
         }
-
+        loginFactory.getAuthenticated = function(){
+            return $scope.authenticated;
+        }
+        return loginFactory;
 }]);
