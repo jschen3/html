@@ -1,33 +1,49 @@
-// This is called with the results from from FB.getLoginStatus().
-angular.module('loginFactory',[]).controller('loginFactory',['$scope', function($scope){
-    $scope.status='';
-    $scope.checkLoginState = function(){
-        FB.getLoginStatus().then(function(response) {
-            statusChangeCallback(response);
-        });
-    }
-    statusChangeCallback = function(response){
-        console.log('statusChangeCallback');
-        console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-        if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-        testAPI();
-        } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-            $scope.status='';
-        } else {
-            $scope.status='';
+angular.module('loginCtrl',['facebook']).config(
+    ['FacebookProvider', function(FacebookProvider){
+        var myAppId='1746903815593556';
+        FacebookProvider.init(myAppId);
+}])
+    .controller('loginCtrl',['$scope','$timeout','Facebook',
+     function($scope, $timeout, Facebook){
+        $scope.user = {};
+        $scope.authenticated=false;
+        $scope.statusMessage='';
+        $scope.$watch(
+            function(){
+                return Facebook.isReady();
+            },
+            function(newVal){
+                if (newVal)
+                    $scope.facebookReady=true;
+            }
+        );
+        $scope.login = function(){
+            Facebook.login(function(response) {
+                if (response.status == 'connected') {
+                    $scope.authenticated = true;
+                    Facebook.api('/me', function(response) {
+                        $scope.$apply(function() {
+                            $scope.user = response;
+                            console.log($scope.user);
+                            $scope.statusMessage='Welcome, '+$scope.user.name;
+                            document.getElementById('status').innerHTML = 'Welcome, '+$scope.user.name;;
+                        });
+                    });
+                }
+        
+            });
+        };
+        $scope.logout = function() {
+            Facebook.logout(function() {
+                $scope.$apply(function() {
+                    $scope.user   = {};
+                    $scope.statusMessage='';
+                    $scope.authenticated = false;  
+                });
+            });
+        };
+        $scope.getUserName = function(){
+            return $scope.user.name;
         }
-    }
-    testAPI = function() {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-            $scope.status='Welcome, ' + response.name + '.';
-        });
-  }
+
 }]);
